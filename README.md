@@ -1,6 +1,6 @@
 # crud-rest-api
 sistema crud rest requisições por GET. Para melhor segurança aplicar método POST
-
+pode-se usar todas requisições sem a extenção .php
 
 ### Link abaixo para Doação
 

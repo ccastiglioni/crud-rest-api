@@ -5,6 +5,8 @@ header('content-type:application/json');
 $actionName =  $_GET["actionName"];
 
 ///http://127.0.0.1/crud-rest-api/veiculo.php?actionName=selectPost
+//OU
+///http://127.0.0.1/crud-rest-api/veiculo?actionName=selectPost
 if($actionName == "selectPost"){
     $seachKey = isset($_GET["id"]) ? $_GET["id"] : '';
  

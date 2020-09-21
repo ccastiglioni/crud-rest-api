@@ -1,14 +1,12 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
 require_once('include/mysqli_connect.php');
 header('content-type:application/json');
 
 $actionName = $_GET["actionName"];
 
 //http://127.0.0.1/crud-rest-api/index.php?actionName=selectPost
+//OU 
+//http://127.0.0.1/crud-rest-api/index?actionName=selectPost
 if($actionName == "selectPost"){
 	$seachKey = isset($_GET["id"]) ? $_GET["id"] : '';
  
