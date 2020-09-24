@@ -1,14 +1,15 @@
 <?php
 require_once('include/mysqli_connect.php');
+require_once('include/trimscape.php');
 header('content-type:application/json');
 
-$actionName = $_GET["actionName"];
+$actionName = htmlvalidation($_GET["actionName"]);
 
 //http://127.0.0.1/crud-rest-api/index.php?actionName=selectPost
 //OU 
 //http://127.0.0.1/crud-rest-api/index?actionName=selectPost
 if($actionName == "selectPost"){
-	$seachKey = isset($_GET["id"]) ? $_GET["id"] : '';
+	$seachKey = htmlvalidation(isset($_GET["id"]) ? $_GET["id"] : '');
  
 	if(!empty($seachKey))
 		$query = "SELECT * FROM cliente where id ={$seachKey}";
@@ -35,10 +36,10 @@ if($actionName == "selectPost"){
 //http://127.0.0.1/crud-rest-api/index.php?actionName=insertPost&postName=carlos&cpf=879879&end=rua%20almirante&email=karla@gmail.com
 if($actionName == "insertPost"){
 
-	$postName = isset($_GET["postName"]) ? $_GET["postName"] : '';
-	$postCpf  = isset($_GET["cpf"]) ? $_GET["cpf"] : '';
-	$postEnd  = isset($_GET["end"]) ? $_GET["end"] : '';
-	$postEmail= isset($_GET["email"]) ? $_GET["email"] : '';
+	$postName = htmlvalidation(isset($_GET["postName"]) ? $_GET["postName"] : '');
+	$postCpf  = htmlvalidation(isset($_GET["cpf"]) ? $_GET["cpf"] : '');
+	$postEnd  = htmlvalidation(isset($_GET["end"]) ? $_GET["end"] : '');
+	$postEmail= htmlvalidation(isset($_GET["email"]) ? $_GET["email"] : '');
 
 	if(!empty($postName) && !empty($postCpf) && !empty($postEnd) && !empty($postEmail)  ){
 		$query = "INSERT INTO cliente(nome, cpf, endereco, email) VALUES('$postName', '$postCpf','$postEnd','$postEmail')";
@@ -55,14 +56,14 @@ if($actionName == "insertPost"){
     echo json_encode($resultData);
 }
 
-
+//http://127.0.0.1/crud-rest-api/index.php?actionName=updatePost&postName=maria01&cpf=99987745&end=rua%20almirante&email=maria@gmail.com&id=63
 if($actionName == "updatePost"){
 
-	$postId   = isset($_GET["id"]) ? $_GET["id"] : '';
-	$postName = isset($_GET["postName"]) ? $_GET["postName"] : '';
-	$postCpf  = isset($_GET["cpf"]) ? $_GET["cpf"] : '';
-	$postEnd  = isset($_GET["end"]) ? $_GET["end"] : '';
-	$postEmail= isset($_GET["email"]) ? $_GET["email"] : '';	
+	$postId   = htmlvalidation(isset($_GET["id"]) ? $_GET["id"] : '');
+	$postName = htmlvalidation(isset($_GET["postName"]) ? $_GET["postName"] : '');
+	$postCpf  = htmlvalidation(isset($_GET["cpf"]) ? $_GET["cpf"] : '');
+	$postEnd  = htmlvalidation(isset($_GET["end"]) ? $_GET["end"] : '');
+	$postEmail= htmlvalidation(isset($_GET["email"]) ? $_GET["email"] : '');	
 	
 	if(!empty($postName) && !empty($postCpf)  && !empty($postEnd) && !empty($postEmail)  ){
 		$query = "UPDATE cliente SET nome='$postName', cpf='$postCpf', endereco ='$postEnd' , email ='$postEmail'  WHERE id=$postId";
@@ -82,7 +83,7 @@ if($actionName == "updatePost"){
 
 if($actionName == "deletePost"){
 
-	$postId   = isset($_GET["postId"]) ? $_GET["postId"] : '';
+	$postId   = htmlvalidation(isset($_GET["postId"]) ? $_GET["postId"] : '');
 	
 	if(!empty($postId)){
 		$query = "DELETE FROM cliente WHERE id=$postId";
