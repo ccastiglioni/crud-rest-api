@@ -1,6 +1,8 @@
 # crud-rest-api
-sistema crud rest requisições por GET. Para melhor segurança aplicar método POST <b>
-pode-se usar todas requisições sem a extenção .phpr
+OBS:
+1- Sistema crud rest requisições por GET. Para melhor segurança aplicar método POST <br>
+2- Pode-se usar todas requisições sem a extenção .php <br>
+3 - Aplicar a função htmlvalidation() nos arquivos locacao.php e veiculo.php 
 
 ### Link abaixo para Doação
 
